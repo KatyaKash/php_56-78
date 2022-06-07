@@ -10,7 +10,7 @@ class Tag
 		$this->name = $name;
 	}
 
-	public function setAttr($name, $value){
+	public function setAttr($name, $value = true){
 		$this->attrs[$name] = $value;
 		return $this;
 	}
@@ -39,7 +39,11 @@ class Tag
 		if (!empty($attrs)){
 			$result = '';
 			foreach ($attrs as $name => $value){
-				$result.=" $name=\"$value\"";
+				if ($value === true){
+					$result.=" $name=";
+				} else {
+					$result.=" $name=\"$value\"";
+				}
 			}
 			return $result;
 		}
@@ -52,3 +56,10 @@ echo $tag->setAttrs(['src' => 'pic.jpg', 'title' => '707'])->open();
 
 $tag1 = new Tag('header');
 echo $tag1->open().'header сайта'.$tag1->close();
+
+$tag2 = new Tag('input');
+	
+	echo $tag2
+		->setAttr('id', 'test')
+		->setAttr('disabled', true)
+		->open(); // выведет <input id="test" disabled>
