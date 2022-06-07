@@ -22,11 +22,4 @@ class Textarea extends Tag{
 	}
 }
 
-	$form = (new Form)->setAttrs(['method' => 'GET']);
-	
- 	echo $form->open();
-		echo (new Input)->setAttr('name', 'user');
-		echo (new Textarea)->setAttr('name', 'message')->show();
-		echo new Submit;
-	echo $form->close();
 ?>
