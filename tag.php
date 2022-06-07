@@ -18,7 +18,12 @@ class Tag
 		unset($this->attrs[$name]);
 		return $this;
 	}
-
+	public function setAttrs($attrs){
+		foreach ($attrs as $name => $value){
+			$this->setAttr($name, $value);
+		}
+		return $this;
+	}
 	public function open(){
 		$name = $this->name;
 		$attrsStr = $this->getAttrsStr($this->attrs);
@@ -40,10 +45,10 @@ class Tag
 		}
 		else {return '';}
 	}
-}
+};
 
 $tag = new Tag('img');
-echo $tag->setAttr('src', 'pic.jpg')->open();
+echo $tag->setAttrs(['src' => 'pic.jpg', 'title' => '707'])->open();
 
 $tag1 = new Tag('header');
 echo $tag1->open().'header сайта'.$tag1->close();
