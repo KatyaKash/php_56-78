@@ -3,11 +3,28 @@
 class Tag
 {
 	private $name; 
+	private $text = ''; 
 	private $attrs = [];
 
 	public function __construct($name)
 	{
 		$this->name = $name;
+	}
+
+	public function getName(){
+		return $this->name;
+	}
+	public function getText(){
+		return $this->text;
+	}
+	public function getAttrs(){
+		return $this->attrs;
+	}
+	public function getAttr($attr){
+		if (isset($this->attrs[$attr])){
+		return $this->attrs[$attr];}
+	} else {
+		return null;
 	}
 
 	public function setAttr($name, $value = true){
@@ -81,6 +98,17 @@ class Tag
 		array_splice($arr, $key, 1);
 		return $arr;
 	}
+
+	public function show()
+		{
+			return $this->open() . $this->text . $this->close();
+		}
+	public function setText($text)
+		{
+			$this->text = $text;
+			return $this;
+		}
+		
 };
 
 $tag = new Tag('img');
@@ -122,7 +150,7 @@ echo (new Tag('input'))->setAttr('name', 'name2')->open().'<br>';
 		->addClass('bbb')
 		->addClass('eee') // такой класс уже есть и не добавится
 		->open();
-		
+
 //проверка removeClass
 echo (new Tag('input'))
 		->setAttr('class', 'eee zzz kkk') // добавим 3 класса
