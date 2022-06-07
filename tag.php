@@ -38,6 +38,18 @@ class Tag
 		}
 		return $this;
 	}
+
+	public function removeClass($className){
+		if (isset($this->attrs['class'])){
+			$classNames = explode(' ', $this->attrs['class']);
+			if (in_array($className, $classNames)){
+				$classNames = $this->removeElem($className, $classNames);
+				$this->attrs['class'] = implode(' ', $classNames);
+			}
+		}
+		return $this;
+	}
+
 	public function open(){
 		$name = $this->name;
 		$attrsStr = $this->getAttrsStr($this->attrs);
@@ -62,6 +74,12 @@ class Tag
 			return $result;
 		}
 		else {return '';}
+	}
+
+	private function removeElem($elem, $arr){
+		$key = array_search($elem, $arr);
+		array_splice($arr, $key, 1);
+		return $arr;
 	}
 };
 
@@ -104,3 +122,9 @@ echo (new Tag('input'))->setAttr('name', 'name2')->open().'<br>';
 		->addClass('bbb')
 		->addClass('eee') // такой класс уже есть и не добавится
 		->open();
+		
+//проверка removeClass
+echo (new Tag('input'))
+		->setAttr('class', 'eee zzz kkk') // добавим 3 класса
+		->removeClass('zzz') // удалим класс 'zzz'
+		->open(); // выведет <input class="eee kkk">
