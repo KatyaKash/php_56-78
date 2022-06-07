@@ -63,3 +63,7 @@ $tag2 = new Tag('input');
 		->setAttr('id', 'test')
 		->setAttr('disabled', true)
 		->open(); // выведет <input id="test" disabled>
+
+	
+echo (new Tag('input'))->setAttr('name', 'name1')->open();
+echo (new Tag('input'))->setAttr('name', 'name2')->open();
