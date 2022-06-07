@@ -22,10 +22,11 @@ class Tag
 	}
 	public function getAttr($attr){
 		if (isset($this->attrs[$attr])){
-		return $this->attrs[$attr];}
+		return $this->attrs[$attr];
 	} else {
 		return null;
 	}
+}
 
 	public function setAttr($name, $value = true){
 		$this->attrs[$name] = $value;
@@ -110,49 +111,3 @@ class Tag
 		}
 		
 };
-
-$tag = new Tag('img');
-echo $tag->setAttrs(['src' => 'pic.jpg', 'title' => '707'])->open();
-
-$tag1 = new Tag('header');
-echo $tag1->open().'header сайта'.$tag1->close();
-
-$tag2 = new Tag('input');
-	
-	echo $tag2
-		->setAttr('id', 'test')
-		->setAttr('disabled', true)
-		->open(); // выведет <input id="test" disabled>
-
-	
-echo (new Tag('input'))->setAttr('name', 'name1')->open();
-echo (new Tag('input'))->setAttr('name', 'name2')->open().'<br>';
-
-//проверка addClass
-
-		// Выведет <input class="eee">:
-	echo (new Tag('input'))->addClass('eee')->open();
-		// Выведет <input class="eee bbb">:
-	echo (new Tag('input'))->addClass('eee')->addClass('bbb
-		')->open();
-		// Выведет <input class="eee bbb kkk">:
-	echo (new Tag('input'))
-		->setAttr('class', 'eee bbb')
-		->addClass('kkk')->open();
-		// Выведет <input class="eee bbb">:
-	echo (new Tag('input'))
-		->setAttr('class', 'eee bbb')
-		->addClass('eee') // такой класс уже есть и не добавится
-		->open();
-		// Выведет <input class="eee bbb">:
-	echo (new Tag('input'))
-		->addClass('eee')
-		->addClass('bbb')
-		->addClass('eee') // такой класс уже есть и не добавится
-		->open();
-
-//проверка removeClass
-echo (new Tag('input'))
-		->setAttr('class', 'eee zzz kkk') // добавим 3 класса
-		->removeClass('zzz') // удалим класс 'zzz'
-		->open(); // выведет <input class="eee kkk">
