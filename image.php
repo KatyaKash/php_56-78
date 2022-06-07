@@ -12,7 +12,4 @@ require_once 'tag.php';
 
 	}
 
-echo (new Image())->setAttr('src', 'pic.jpg')->setAttrs(['width' => '300', 'height' => '200']);
-
-
 ?>
