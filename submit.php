@@ -9,9 +9,3 @@ class Submit extends Input{
 			parent::__construct();
 		}
 	}
-	$form = (new Form)->setAttrs(['action' => 'test.txt', 'method' => 'GET']);
-	
- 	echo $form->open();
-		echo (new Input)->setAttr('name', 'year');
-		echo new Submit;
-	echo $form->close();
