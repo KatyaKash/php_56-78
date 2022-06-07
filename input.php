@@ -26,7 +26,7 @@ $sum = 0;
 			return $this->open();
 		}
 	}
-$form = (new Form)->setAttrs(['action' => '', 
+/*$form = (new Form)->setAttrs(['action' => '', 
 		'method' => 'GET']);
 	
  	echo $form->open();
@@ -37,4 +37,4 @@ $form = (new Form)->setAttrs(['action' => '',
 		echo (new Input)->setAttr('name', 'e');
 		echo (new Input)->setAttr('type', 'submit');
 	echo $form->close();
-echo $sum;
+echo $sum;*/
