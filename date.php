@@ -17,7 +17,19 @@ class Date
 		return date('d', strtotime($this->date));
 	}
 	public function getMonth($lang = null){
-		return date('m', strtotime($this->date));
+		if ($lang == 'en'){
+			$engMNames = [
+        	1 => 'january', 'february', 'march', 'april', 'may',  'june', 'july', 'august', 'september', 'october',  'november', 'december',];
+			return $engMNames[date('m', strtotime($this->date))];
+		} elseif ($lang == 'ru')
+		{
+			$rusMNames = [
+        	1 =>'Январь', 'Февраль', 'Март', 'Апрель', 'Май',  'Июнь', 
+             'Июль', 'Август', 'Сентябрь', 'Октябрь',  'Ноябрь', 'Декабрь',];
+
+			return $rusMNames[date('m', strtotime($this->date))];
+		}
+		else{return date('m', strtotime($this->date));}
 	}
 	public function getYear(){
 		return date('Y', strtotime($this->date));
@@ -58,37 +70,37 @@ class Date
 	public function addDay($value)
 	{
 		$this->date = date('Y-m-d', strtotime($this->date."+ ${value} days"));
-		return $this->date;// добавляет значение value к дню
+		return $this;// добавляет значение value к дню
 	}
 		
 	public function subDay($value)
 	{
 		$this->date = date('Y-m-d', strtotime($this->date."- ${value} days"));
-		return $this->date;// отнимает значение value от дня
+		return $this;// отнимает значение value от дня
 	}
 		
 	public function addMonth($value)
 	{
 		$this->date =  date('Y-m-d', strtotime($this->date."+ ${value} months"));
-		return $this->date;// добавляет значение $value к месяцу
+		return $this;// добавляет значение $value к месяцу
 	}
 		
 	public function subMonth($value)
 	{
 		$this->date =  date('Y-m-d', strtotime($this->date."- ${value} months"));
-		return $this->date;// отнимает значение $value от месяца
+		return $this;// отнимает значение $value от месяца
 	}
 		
 	public function addYear($value)
 	{
 		$this->date =  date('Y-m-d', strtotime($this->date."+ ${value} years"));
-		return $this->date;// добавляет значение $value к году
+		return $this;// добавляет значение $value к году
 	}
 		
 	public function subYear($value)
 	{
 		$this->date =  date('Y-m-d', strtotime($this->date."- ${value} years"));
-		return $this->date;// отнимает значение $value от года
+		return $this;// отнимает значение $value от года
 	}
 		
 	public function format($format)
@@ -108,6 +120,8 @@ class Date
 	
 	echo $date->getYear().'<br>';  // выведет '2025'
 	echo $date->getMonth().'<br>'; // выведет '12'
+	echo $date->getMonth('en').'<br>'; // выведет 'december'
+	echo $date->getMonth('ru').'<br>'; // выведет 'Декабрь'
 	echo $date->getDay().'<br>';   // выведет '31'
 	
 	echo $date->getWeekDay().'<br>';     // выведет '3'
@@ -117,7 +131,7 @@ class Date
 	echo (new Date('2025-12-31'))->addYear(1).'<br>'; // '2026-12-31'
 	echo (new Date('2025-12-31'))->addDay(1).'<br>';  // '2026-01-01'
 	
-	//echo (new Date('2025-12-31'))->subDay(3)->addYear(1); //'2026-12-28'
+	echo (new Date('2025-12-31'))->subDay(3)->addYear(1); //'2026-12-28'
 ?>
 
 
