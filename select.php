@@ -31,15 +31,20 @@ class Option extends Tag{
 			public function __toString(){
 			return $this->show();
 		}
+		public function setSelected(){
+			$this->setAttr('selected');
+			return $this;
+		}
 
 }
-
 $form = (new Form)->setAttrs(['action' => ' ', 'method' => 'GET']);
-$sel = 	new Select;
-echo $sel->setAttr('name', 'list')
-	->add( (new Option())->setText('item1') )
-	->add( (new Option())->setText('item2') )
-	->add( (new Option())->setText('item3') )
-	->show();
-	echo $form->close();
+	
+echo $form->open();
+	echo (new Select)
+		->add( (new Option())->setText('item1') )
+		->add( (new Option())->setText('item2')->setSelected() )
+		->add( (new Option())->setText('item3') )
+		->show();
+echo $form->close();
+
 ?>
