@@ -24,6 +24,20 @@ class Tag
 		}
 		return $this;
 	}
+	public function addClass($className){
+
+		if (!isset($this->attrs['class'])){
+			$this->attrs['class'] = $className;
+		} else {
+
+			$classNames = explode(' ', $this->attrs['class']);
+			if (!in_array($className, $classNames)){
+				$classNames[] = $className;
+				$this->attrs['class'] = implode(' ', $classNames);
+			}
+		}
+		return $this;
+	}
 	public function open(){
 		$name = $this->name;
 		$attrsStr = $this->getAttrsStr($this->attrs);
@@ -66,4 +80,27 @@ $tag2 = new Tag('input');
 
 	
 echo (new Tag('input'))->setAttr('name', 'name1')->open();
-echo (new Tag('input'))->setAttr('name', 'name2')->open();
+echo (new Tag('input'))->setAttr('name', 'name2')->open().'<br>';
+
+//проверка addClass
+
+		// Выведет <input class="eee">:
+	echo (new Tag('input'))->addClass('eee')->open();
+		// Выведет <input class="eee bbb">:
+	echo (new Tag('input'))->addClass('eee')->addClass('bbb
+		')->open();
+		// Выведет <input class="eee bbb kkk">:
+	echo (new Tag('input'))
+		->setAttr('class', 'eee bbb')
+		->addClass('kkk')->open();
+		// Выведет <input class="eee bbb">:
+	echo (new Tag('input'))
+		->setAttr('class', 'eee bbb')
+		->addClass('eee') // такой класс уже есть и не добавится
+		->open();
+		// Выведет <input class="eee bbb">:
+	echo (new Tag('input'))
+		->addClass('eee')
+		->addClass('bbb')
+		->addClass('eee') // такой класс уже есть и не добавится
+		->open();
