@@ -10,13 +10,4 @@ class Password extends Input{
 			parent::__construct();
 		}
 	}
-
-
-	$form = (new Form)->setAttrs(['action' => 'test.txt', 'method' => 'GET']);
-	
- 	echo $form->open();
-		echo (new Input)   ->setAttr('name', 'login');
-		echo (new Password)->setAttr('name', 'passw');
-		echo new Submit;
-	echo $form->close();
 ?>
