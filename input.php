@@ -1,7 +1,7 @@
 <?php
 require_once 'tag.php';
 require_once 'form.php';
-$sum = 0;
+//$sum = 0;
 	class Input extends Tag
 	{
 
@@ -14,8 +14,8 @@ $sum = 0;
 			if ($inputName){
 				if (isset($_REQUEST[$inputName])){
 					$value = $_REQUEST[$inputName];
-					global $sum;
-					$sum = $sum + $value;
+					//global $sum;
+					//$sum = $sum + $value;
 					$this->setAttr('value', $value);
 				}
 			}
